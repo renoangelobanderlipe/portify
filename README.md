@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portify 🚀
 
-## Getting Started
+![Node.js](https://img.shields.io/badge/Node.js-v20+-green?style=flat-square)
+![pnpm](https://img.shields.io/badge/pnpm-v8+-blue?style=flat-square)
+![License](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)
 
-First, run the development server:
+> ⚠️ **Notice:** This repository is proprietary. You may **not duplicate, redistribute, or use this code for commercial purposes** without explicit permission from the author.
+
+**Portify** is a full-stack portfolio management system designed for developers and creators who want complete control over their portfolio content.
+
+It features:
+
+- A **secure Laravel + Sanctum backend** for authentication and API key management.
+- A sleek **Next.js + ShadCN admin panel** for managing projects, images, tech stacks, and links.
+- An easy way to keep personal or team portfolios in sync — whether it’s one project or hundreds.
+
+---
+
+## 🔧 Tech Stack
+
+**Backend:**
+
+- Laravel
+- Laravel Sanctum (cookie-based auth for admin, bearer token for API access)
+
+**Frontend:**
+
+- Next.js 15 (App Router)
+- TypeScript
+- ShadCN UI
+- Tailwind CSS
+- Zustand
+- Zod
+- React Hook Form
+- TanStack Query
+- uidotdev hooks
+
+---
+
+## ⚙️ Prerequisites
+
+Make sure you have the following installed:
+
+1. **Node.js** (v20+)
+2. **pnpm** (v8+)
+
+---
+
+## 🚀 Project Setup
+
+### 1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/renoangelobanderlipe/portify.git
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd portify
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Run the development server
 
-## Learn More
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 📝 Additional Notes & Best Practices
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### 1. Code Formatting
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Before committing, make sure your code is formatted:
 
-## Deploy on Vercel
+```bash
+pnpm lint:format
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### 2. Branching Strategy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Always create a new branch for your feature or fix:
+
+```bash
+git checkout -b <yourname>/<feature-name>
+eg. git checkout -b reno/fix-login-form
+```
+
+#### 3. Merging Guidelines
+
+- Wait for the pipeline to finish before merging.
+
+- Always squash commits for cleaner history.
