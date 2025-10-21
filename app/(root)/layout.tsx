@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/common/theme-provider";
+import "@/styles/globals.css";
+import { ThemeProvider } from "@/components/shared/theme-provider";
 
 const figtreeSans = Figtree({
   variable: "--font-figtree-sans",
