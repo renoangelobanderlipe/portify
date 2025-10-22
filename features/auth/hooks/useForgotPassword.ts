@@ -1,8 +1,8 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import type { ForgotPasswordDTO } from "../dtos/forgotPasswordDTO";
 import { forgotPassword } from "../services/forgotPassword.service";
-import { ForgotPasswordDTO } from "../dtos/forgotPasswordDTO";
 
 export const useForgotPassword = () => {
   const queryClient = useQueryClient();

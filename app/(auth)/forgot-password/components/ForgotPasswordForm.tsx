@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { Controller } from "react-hook-form";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,8 +19,6 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
-import { Controller } from "react-hook-form";
 import { useHooks } from "../useHooks";
 
 export function ForgotPasswordForm({

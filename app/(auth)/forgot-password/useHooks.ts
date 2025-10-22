@@ -1,13 +1,12 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import {
-  ForgotPasswordDTO,
+  type ForgotPasswordDTO,
   ForgotPasswordSchema,
 } from "@/features/auth/dtos/forgotPasswordDTO";
 import { useForgotPassword } from "@/features/auth/hooks/useForgotPassword";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-import { SubmitHandler, useForm } from "react-hook-form";
 
 export const useHooks = () => {
   const methods = useForm<ForgotPasswordDTO>({
