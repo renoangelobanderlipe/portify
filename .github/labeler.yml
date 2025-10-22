@@ -1,8 +1,13 @@
 frontend:
   - "app/**"
   - "components/**"
+  - "features/**"
   - "lib/**"
   - "public/**"
+  - "stores/**"
+  - "styles/**"
+  - "types/**"
+  - "utils/**"
 
 devops:
   - ".github/**"
