@@ -61,7 +61,6 @@ export function LoginForm({
                       {...field}
                       id={field.name}
                       aria-invalid={fieldState.invalid}
-                      placeholder="Login button not working on mobile"
                       autoComplete="on"
                     />
                     {fieldState.invalid && (
