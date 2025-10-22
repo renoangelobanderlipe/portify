@@ -2,8 +2,11 @@
 
 import {
   IconDashboard,
+  IconFolder,
   IconInnerShadowTop,
+  IconKey,
   IconSettings,
+  IconUserCircle,
 } from "@tabler/icons-react";
 import Link from "next/dist/client/link";
 import type * as React from "react";
@@ -18,6 +21,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { NavSecondary } from "./nav-secondary";
 
 const data = {
   user: {
@@ -32,14 +36,26 @@ const data = {
       icon: IconDashboard,
     },
     {
-      title: "API Keys",
-      url: "/admin/api-keys",
-      icon: IconDashboard,
+      title: "My Projects",
+      url: "/admin/projects",
+      icon: IconFolder,
     },
+    {
+      title: "My Account",
+      url: "/admin/account",
+      icon: IconUserCircle,
+    },
+  ],
+  navSecondary: [
     {
       title: "Settings",
       url: "/admin/settings",
       icon: IconSettings,
+    },
+    {
+      title: "API Keys",
+      url: "/admin/api-keys",
+      icon: IconKey,
     },
   ],
 };
@@ -64,6 +80,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
+        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
