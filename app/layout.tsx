@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import "@/styles/globals.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 
 const figtreeSans = Figtree({
