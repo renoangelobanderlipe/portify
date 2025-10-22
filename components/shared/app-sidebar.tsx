@@ -32,6 +32,11 @@ const data = {
       icon: IconDashboard,
     },
     {
+      title: "API Keys",
+      url: "/admin/api-keys",
+      icon: IconDashboard,
+    },
+    {
       title: "Settings",
       url: "/admin/settings",
       icon: IconSettings,
