@@ -8,6 +8,7 @@ frontend:
   - "styles/**"
   - "types/**"
   - "utils/**"
+  - "_mock/**"
 
 devops:
   - ".github/**"
