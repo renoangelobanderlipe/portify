@@ -1,10 +1,13 @@
 "use client";
 
-import { signUpFormFields, signUpSchema } from "@/features/auth/dtos/signupDTO";
-import { useSignup } from "@/features/auth/hooks/useSignup";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { type SubmitHandler, useForm } from "react-hook-form";
+import {
+  type signUpFormFields,
+  signUpSchema,
+} from "@/features/auth/dtos/signupDTO";
+import { useSignup } from "@/features/auth/hooks/useSignup";
 
 export const useHooks = () => {
   const router = useRouter();
@@ -21,10 +24,10 @@ export const useHooks = () => {
         methods.reset();
         router.replace("/admin/dashboard");
       },
-      onError: (error: any) => {
+      onError: (error) => {
         methods.setError("root", {
           type: "server",
-          message: error?.response?.data?.message || "Something went wrong",
+          message: error?.message || "Something went wrong",
         });
       },
     });
