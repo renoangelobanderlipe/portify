@@ -39,31 +39,31 @@ export const ProjectCard = (props: ProjectCardProps) => {
   };
 
   return (
-    <Card className="flex flex-col justify-between w-full max-w-sm bg-card text-white border shadow-lg rounded-xl overflow-hidden">
+    <Card className="bg-card flex w-full max-w-sm flex-col justify-between overflow-hidden rounded-xl border text-white shadow-lg">
       <CardHeader className="flex flex-col gap-4">
-        <div className="relative w-full h-44 ">
+        <div className="relative h-44 w-full">
           <Image
             //  TODO: To add the thumbnail later after the backend setup
             src={"/sample-image.jpg"}
             alt={title}
             width={400}
             height={180}
-            className="object-cover w-full h-full rounded-md"
+            className="h-full w-full rounded-md object-cover"
           />
         </div>
 
-        <CardTitle className="text-wrap w-full pt-4">
-          <div className="text-sm leading-none text-primary font-light">
+        <CardTitle className="w-full pt-4 text-wrap">
+          <div className="text-primary text-sm leading-none font-light">
             {type}
           </div>
-          <div className="flex justify-between items-center text-3xl font-bold text-secondary">
+          <div className="text-secondary flex items-center justify-between text-3xl font-bold">
             {title}
           </div>
         </CardTitle>
-        <CardDescription className=" line-clamp-2">
+        <CardDescription className="line-clamp-2">
           {description}
         </CardDescription>
-        <div className="gap-2 line-clamp-2">
+        <div className="line-clamp-2 gap-2">
           {tags?.map((tag) => (
             <Badge variant="secondary" key={tag} className="m-1">
               {tag}
@@ -72,17 +72,15 @@ export const ProjectCard = (props: ProjectCardProps) => {
         </div>
       </CardHeader>
 
-      <CardFooter className="w-full flex gap-4">
-        <Button
-          variant="outline"
-          className="flex-1 text-primary border-primary"
-        >
+      <CardFooter className="grid gap-4 sm:grid-cols-2">
+        <Button variant="outline" className="border-primary text-primary">
           Edit Project
         </Button>
         <Button
-          className="flex-1 cursor-pointer"
+          variant="default"
           onClick={handleProjectLink}
           disabled={!url}
+          className={!url ? "cursor-not-allowed opacity-50" : "cursor-pointer"}
         >
           Project Link
         </Button>

@@ -15,7 +15,7 @@ export default function Page() {
   if (projects.length < 1) return <EmptyProject />;
   return (
     <>
-      <div className="flex  justify-between items-center">
+      <div className="flex items-center justify-between">
         <AppHeader title="Projects" description="lorem ipsum" />
         <div>
           <Button onClick={() => router.push("/admin/projects/new")}>
@@ -24,7 +24,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 ">
+      <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {projects.map((project) => (
           <Fragment key={project.id}>
             <ProjectCard
