@@ -5,8 +5,8 @@ export const CreateProjectSchema = z.object({
     message: "Title is required",
   }),
   description: z.string().optional(),
-  started_at: z.date().optional(),
-  end_at: z.date().optional(),
+  start_date: z.date().optional(),
+  end_date: z.date().optional(),
   url: z
     .string()
     .trim()

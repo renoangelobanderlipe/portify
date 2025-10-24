@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import type { Control } from "react-hook-form";
-import { ControllerDatePicker } from "@/components/shared/controller-date-picker";
-import { ControllerInput } from "@/components/shared/controller-input";
 import { ControllerInputGroup } from "@/components/shared/controller-input-group";
+import { FormDatePicker } from "@/components/shared/form-date-picker";
+import { FormTextField } from "@/components/shared/form-text-field";
 import { UploadDropzone } from "@/components/shared/upload-dropzone";
 import {
   Accordion,
@@ -13,6 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Separator } from "@/components/ui/separator";
 import type { CreateProjectDTO } from "@/features/projects/dtos/createProjectDTO";
 import { JPEG, PNG, SVG } from "@/lib/react-dropzone/file-types";
 
@@ -23,11 +23,6 @@ type CreateCardPropertiesProps = {
 export const CreateCardProperties = ({
   control,
 }: CreateCardPropertiesProps) => {
-  const [startDate, setStartDate] = useState<Date | undefined>();
-  const [endDate, setEndDate] = useState<Date | undefined>();
-  const [openStart, setOpenStart] = useState(false);
-  const [openEnd, setOpenEnd] = useState(false);
-
   const acceptedImageTypes = {
     "image/*": [...JPEG, ...PNG, ...SVG],
   };
@@ -50,33 +45,20 @@ export const CreateCardProperties = ({
         </AccordionTrigger>
 
         <AccordionContent className="flex flex-col gap-6">
+          <Separator />
           <FieldGroup>
             {/* Start / End Date */}
             <div className="flex gap-4">
-              <ControllerDatePicker
-                name="started_at"
+              <FormDatePicker
                 control={control}
+                name="start_date"
                 label="Start Date"
-                open={openStart}
-                onOpenChange={setOpenStart}
-                selected={startDate}
-                onSelect={(date) => {
-                  setStartDate(date);
-                  setOpenStart(false);
-                }}
               />
 
-              <ControllerDatePicker
-                name="end_at"
+              <FormDatePicker
                 control={control}
+                name="end_date"
                 label="End Date"
-                open={openEnd}
-                onOpenChange={setOpenEnd}
-                selected={endDate}
-                onSelect={(date) => {
-                  setEndDate(date);
-                  setOpenEnd(false);
-                }}
               />
             </div>
 
@@ -90,9 +72,9 @@ export const CreateCardProperties = ({
                 prefix="https://"
               />
 
-              <ControllerInput
-                name="project_type"
+              <FormTextField
                 control={control}
+                name="project_type"
                 label="Project Type"
                 placeholder="Web Application"
               />
@@ -100,15 +82,15 @@ export const CreateCardProperties = ({
 
             {/* Repository + Tags */}
             <div className="flex flex-wrap gap-4">
-              <ControllerInput
-                name="repository"
+              <FormTextField
                 control={control}
+                name="repository"
                 label="Repository"
                 placeholder="https://github.com/renoangelobanderlipe/portify"
               />
-              <ControllerInput
-                name="tags"
+              <FormTextField
                 control={control}
+                name="tags"
                 label="Tags"
                 placeholder="laravel"
               />

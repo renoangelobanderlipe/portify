@@ -1,8 +1,7 @@
 import api from "@/lib/axios";
+import { ENDPOINT } from "@/utils/constants/endpoints";
 import type { CreateProjectDTO } from "../dtos/createProjectDTO";
 
 export const createProject = async (data: CreateProjectDTO) => {
-  const url = "projects";
-
-  return await api.post(url, data);
+  return await api.post(ENDPOINT.projects, data);
 };

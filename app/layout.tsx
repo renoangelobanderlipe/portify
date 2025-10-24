@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import { Figtree } from "next/font/google";
-import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/shared/theme-provider";
+import "@/styles/globals.css";
+import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
 
-const figtreeSans = Figtree({
-  variable: "--font-figtree-sans",
+const montserratSans = Montserrat({
+  variable: "--font-montserrat-sans",
   subsets: ["latin"],
 });
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${figtreeSans.variable} antialiased`}>
+      <body className={`${montserratSans.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

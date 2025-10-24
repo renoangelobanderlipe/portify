@@ -31,7 +31,7 @@ export function NavMain({
             <Link
               href={item.url}
               className={cn(
-                "rounded-md cursor-pointer",
+                "cursor-pointer rounded-md",
                 pathName === item.url
                   ? "bg-sidebar-primary text-sidebar-primary-foreground"
                   : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",

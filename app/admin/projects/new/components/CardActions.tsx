@@ -2,6 +2,7 @@
 import { type Control, Controller } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Field, FieldGroup } from "@/components/ui/field";
+import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import type { CreateProjectDTO } from "@/features/projects/dtos/createProjectDTO";
 
@@ -24,6 +25,7 @@ export const CreateCardActions = ({ control }: CreateCardActionProps) => {
                 onCheckedChange={field.onChange}
                 aria-invalid={fieldState.invalid}
               />
+              <Label htmlFor="airplane-mode">Publish</Label>
             </Field>
           )}
         />

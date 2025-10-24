@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { AppHeader } from "@/components/ui/app-header";
 import {
   type CreateProjectDTO,
   CreateProjectSchema,
@@ -21,22 +20,15 @@ export default function Page() {
   };
 
   return (
-    <div>
-      <AppHeader
-        title="Create New Projects"
-        description="lorem ipsum"
-        url="/admin/projects"
-      />
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex w-full flex-col items-center justify-center gap-6"
-      >
-        <div className="flex w-full flex-col items-center justify-center gap-6">
-          <CreateCardDetails control={control} />
-          <CreateCardProperties control={control} />
-        </div>
-        <CreateCardActions control={control} />
-      </form>
-    </div>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex w-full flex-col items-center justify-center gap-6"
+    >
+      <div className="flex w-full flex-col items-center justify-center gap-6">
+        <CreateCardDetails control={control} />
+        <CreateCardProperties control={control} />
+      </div>
+      <CreateCardActions control={control} />
+    </form>
   );
 }

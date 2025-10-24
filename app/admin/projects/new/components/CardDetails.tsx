@@ -1,20 +1,15 @@
 "use client";
 
-import { type Control, Controller } from "react-hook-form";
+import type { Control } from "react-hook-form";
+import { FormTextField } from "@/components/shared/form-text-field";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { FieldGroup } from "@/components/ui/field";
+import { Separator } from "@/components/ui/separator";
 import type { CreateProjectDTO } from "@/features/projects/dtos/createProjectDTO";
 
 type CreateCardDetailsProps = {
@@ -33,49 +28,26 @@ export const CreateCardDetails = ({ control }: CreateCardDetailsProps) => {
         <AccordionTrigger className="hover:no-underline">
           <div className="flex flex-col gap-2">
             <div className="text-2xl">Details</div>
-            <div>Title and Description...</div>
+            <div className="text-muted-foreground">
+              Title and Description...
+            </div>
           </div>
         </AccordionTrigger>
         <AccordionContent className="flex flex-col gap-4 text-balance">
+          <Separator />
           <FieldGroup>
-            <Controller
+            <FormTextField
+              control={control}
               name="title"
-              control={control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={field.name}>Title</FieldLabel>
-                  <Input
-                    {...field}
-                    id={field.name}
-                    aria-invalid={fieldState.invalid}
-                    autoComplete="on"
-                    value={field.value}
-                  />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
+              label="Title"
+              placeholder="uMatter"
             />
-            <Controller
-              name="description"
+
+            <FormTextField
               control={control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={field.name}>Description</FieldLabel>
-                  <Textarea
-                    {...field}
-                    id={field.name}
-                    aria-invalid={fieldState.invalid}
-                    autoComplete="on"
-                    placeholder="Description..."
-                    value={field.value}
-                  />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
+              name="description"
+              label="Description"
+              placeholder="A mobile application to help mitigate depression"
             />
           </FieldGroup>
         </AccordionContent>

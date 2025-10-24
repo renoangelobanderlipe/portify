@@ -76,6 +76,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
         <Button variant="outline" className="border-primary text-primary">
           Edit Project
         </Button>
+
         <Button
           variant="default"
           onClick={handleProjectLink}

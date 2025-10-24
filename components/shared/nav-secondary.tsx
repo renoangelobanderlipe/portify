@@ -1,6 +1,6 @@
 "use client";
 
-import type { Icon } from "@tabler/icons-react";
+import { type Icon, IconBrandGithub } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type * as React from "react";
@@ -12,6 +12,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
+import { PROJECT_GITHUB_URL } from "@/utils/constants/constants";
 
 export function NavSecondary({
   items,
@@ -33,7 +34,7 @@ export function NavSecondary({
             <Link
               href={item.url}
               className={cn(
-                "rounded-md cursor-pointer",
+                "cursor-pointer rounded-md",
                 pathName === item.url
                   ? "bg-sidebar-primary text-sidebar-primary-foreground"
                   : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
@@ -48,6 +49,14 @@ export function NavSecondary({
               </SidebarMenuItem>
             </Link>
           ))}
+          <Link href={PROJECT_GITHUB_URL} target="_blank" rel="no-referer">
+            <SidebarMenuItem>
+              <SidebarMenuButton tooltip="Github" className="cursor-pointer">
+                <IconBrandGithub />
+                <span>Github</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </Link>
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
