@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import type { Control } from "react-hook-form";
 import { ControllerDatePicker } from "@/components/shared/controller-date-picker";
 import { ControllerInput } from "@/components/shared/controller-input";
 import { ControllerInputGroup } from "@/components/shared/controller-input-group";
@@ -13,8 +15,6 @@ import {
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import type { CreateProjectDTO } from "@/features/projects/dtos/createProjectDTO";
 import { JPEG, PNG, SVG } from "@/lib/react-dropzone/file-types";
-import { useState } from "react";
-import type { Control } from "react-hook-form";
 
 type CreateCardPropertiesProps = {
   control: Control<CreateProjectDTO>;
@@ -94,6 +94,7 @@ export const CreateCardProperties = ({
                 name="project_type"
                 control={control}
                 label="Project Type"
+                placeholder="Web Application"
               />
             </div>
 
@@ -103,8 +104,14 @@ export const CreateCardProperties = ({
                 name="repository"
                 control={control}
                 label="Repository"
+                placeholder="https://github.com/renoangelobanderlipe/portify"
               />
-              <ControllerInput name="tags" control={control} label="Tags" />
+              <ControllerInput
+                name="tags"
+                control={control}
+                label="Tags"
+                placeholder="laravel"
+              />
             </div>
           </FieldGroup>
 

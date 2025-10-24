@@ -1,9 +1,9 @@
 "use client";
+import { type Control, Controller } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Switch } from "@/components/ui/switch";
 import type { CreateProjectDTO } from "@/features/projects/dtos/createProjectDTO";
-import { type Control, Controller } from "react-hook-form";
 
 type CreateCardActionProps = {
   control: Control<CreateProjectDTO>;

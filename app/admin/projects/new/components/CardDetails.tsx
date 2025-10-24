@@ -1,5 +1,6 @@
 "use client";
 
+import { type Control, Controller } from "react-hook-form";
 import {
   Accordion,
   AccordionContent,
@@ -15,7 +16,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import type { CreateProjectDTO } from "@/features/projects/dtos/createProjectDTO";
-import { type Control, Controller } from "react-hook-form";
 
 type CreateCardDetailsProps = {
   control: Control<CreateProjectDTO>;
@@ -27,9 +27,9 @@ export const CreateCardDetails = ({ control }: CreateCardDetailsProps) => {
       type="single"
       collapsible
       className="w-full max-w-4xl rounded-lg border p-4"
-      defaultValue="item-1"
+      defaultValue="details"
     >
-      <AccordionItem value="item-1">
+      <AccordionItem value="details">
         <AccordionTrigger className="hover:no-underline">
           <div className="flex flex-col gap-2">
             <div className="text-2xl">Details</div>

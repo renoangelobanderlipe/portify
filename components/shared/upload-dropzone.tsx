@@ -1,10 +1,10 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Upload, X } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 import { type Accept, useDropzone } from "react-dropzone";
+import { Button } from "@/components/ui/button";
 
 type UploadDropzoneProps = {
   multiple?: boolean;

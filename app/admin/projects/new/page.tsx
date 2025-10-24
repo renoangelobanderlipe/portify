@@ -1,12 +1,12 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import { AppHeader } from "@/components/ui/app-header";
 import {
   type CreateProjectDTO,
   CreateProjectSchema,
 } from "@/features/projects/dtos/createProjectDTO";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { type SubmitHandler, useForm } from "react-hook-form";
 import { CreateCardActions } from "./components/CardActions";
 import { CreateCardDetails } from "./components/CardDetails";
 import { CreateCardProperties } from "./components/CardProperties";

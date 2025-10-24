@@ -7,7 +7,25 @@ export const CreateProjectSchema = z.object({
   description: z.string().optional(),
   started_at: z.date().optional(),
   end_at: z.date().optional(),
-  url: z.url().optional(),
+  url: z
+    .string()
+    .trim()
+
+    // Disallow inputs containing http or https
+    .refine(
+      (val) =>
+        !val || (!val.startsWith("http://") && !val.startsWith("https://")),
+      {
+        message:
+          "Do not include http:// or https:// — it will be added automatically.",
+      },
+    )
+    // Automatically prepend https:// then validate as full URL
+    .transform((val) => {
+      if (!val) return undefined;
+      return `https://${val}`;
+    })
+    .pipe(z.url("Please enter a valid URL")),
   project_type: z.string().optional(),
   repository: z.string().optional(),
   tags: z.array(z.string()).optional(),
