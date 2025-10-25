@@ -16,7 +16,6 @@ import { ArrowUpDown, Trash2 } from "lucide-react";
 import { type MouseEvent, useState } from "react";
 import { DeleteDialog } from "@/components/shared/delete-dialog";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Table,
@@ -161,7 +160,7 @@ export const ApiKeyDataTable = () => {
   });
 
   return (
-    <Card className="w-full p-6">
+    <div className="w-full flex flex-col gap-6">
       <ApiKeyTableColumn table={table} />
       <div className="overflow-hidden rounded-md border">
         <Table>
@@ -214,6 +213,6 @@ export const ApiKeyDataTable = () => {
         </Table>
       </div>
       <ApiKeyPagination table={table} />
-    </Card>
+    </div>
   );
 };
