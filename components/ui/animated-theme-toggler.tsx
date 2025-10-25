@@ -2,7 +2,7 @@
 
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { cn } from "@/lib/utils";
 
@@ -17,8 +17,13 @@ export const AnimatedThemeToggler = ({
   ...props
 }: AnimatedThemeTogglerProps) => {
   const { theme, setTheme } = useTheme();
-  const isDark = theme === "dark";
+  const [mounted, setMounted] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  // prevent hydration mismatch
+  useEffect(() => setMounted(true), []);
+
+  const isDark = theme === "dark";
 
   const toggleTheme = useCallback(async () => {
     if (!buttonRef.current) return;
@@ -55,6 +60,19 @@ export const AnimatedThemeToggler = ({
       },
     );
   }, [isDark, duration, setTheme]);
+
+  if (!mounted) {
+    // render neutral placeholder to prevent SSR/client mismatch
+    return (
+      <button
+        className={cn("rounded-full p-2", className)}
+        aria-hidden
+        {...props}
+      >
+        <span className="sr-only">Toggle theme</span>
+      </button>
+    );
+  }
 
   return (
     <button
