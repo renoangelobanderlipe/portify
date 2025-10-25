@@ -65,7 +65,11 @@ export const ProjectCard = (props: ProjectCardProps) => {
         </CardDescription>
         <div className="line-clamp-2 gap-2">
           {tags?.map((tag) => (
-            <Badge variant="secondary" key={tag} className="m-1">
+            <Badge
+              variant="secondary"
+              key={crypto.randomUUID()}
+              className="m-1"
+            >
               {tag}
             </Badge>
           ))}
