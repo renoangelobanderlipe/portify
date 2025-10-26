@@ -6,7 +6,6 @@ import {
   IconInnerShadowTop,
   IconKey,
   IconSettings,
-  IconUserCircle,
 } from "@tabler/icons-react";
 import Link from "next/dist/client/link";
 import type * as React from "react";
@@ -39,11 +38,6 @@ const data = {
       title: "My Projects",
       url: "/admin/projects",
       icon: IconFolder,
-    },
-    {
-      title: "My Account",
-      url: "/admin/account",
-      icon: IconUserCircle,
     },
   ],
   navSecondary: [
