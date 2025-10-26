@@ -185,6 +185,10 @@
     font-size: "124px";
     font-weight: "700";
   }
+
+  .card {
+    padding: calc(var(--spacing) * 4);
+  }
 }
 
 @layer base {
