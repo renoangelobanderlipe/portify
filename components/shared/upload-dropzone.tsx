@@ -88,7 +88,9 @@ export const UploadDropzone = ({
         <div className="mt-6 flex flex-wrap items-start gap-3">
           {files.map((file) => (
             <div
-              key={keyRandomizer(file.name)}
+              key={keyRandomizer(
+                `${file.name}-${file.size}-${file.lastModified}`,
+              )}
               className="relative h-20 w-20 overflow-hidden rounded-lg"
             >
               <Image
