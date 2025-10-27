@@ -33,7 +33,7 @@ export const CreateProjectSchema = z.object({
   project_type: z.string().optional(),
   repository: z.string().optional(),
   tags: z.array(z.string()).optional(),
-  thumbnail: z.instanceof(File).nullish(),
+  thumbnail: z.instanceof(File).nullish().optional(),
   other_images: z.array(z.instanceof(File)).optional().or(z.null()),
   published_at: z.boolean().optional(),
   metadata: z.array(z.string()).optional(),
