@@ -11,7 +11,6 @@ import {
   UpdateUserInfoSchema,
 } from "@/features/settings/dtos/updateUserInfo";
 import { cn } from "@/lib/utils";
-import { isNullOrEmptyArray } from "@/utils/helpers";
 
 export const ProfileInfo = () => {
   const {
@@ -27,7 +26,7 @@ export const ProfileInfo = () => {
     },
   });
 
-  const photo = useWatch({ control, name: "photo" });
+  const photo = useWatch({ control, name: "photo", defaultValue: undefined });
 
   const onSubmit: SubmitHandler<UpdateUserInfoDTO> = (data) => {
     console.log("Form submitted:", data);
@@ -48,10 +47,10 @@ export const ProfileInfo = () => {
             <div
               className={cn(
                 "grid gap-4",
-                !isNullOrEmptyArray(photo) ? "grid-cols-2" : "grid-cols-1",
+                photo ? "grid-cols-2" : "grid-cols-1",
               )}
             >
-              {!!dirtyFields.photo && !isNullOrEmptyArray(photo) && (
+              {!!dirtyFields.photo && photo && (
                 <Button
                   variant="outline"
                   type="button"
