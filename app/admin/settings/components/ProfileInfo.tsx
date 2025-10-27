@@ -28,9 +28,6 @@ export const ProfileInfo = () => {
   });
 
   const photo = useWatch({ control, name: ["photo"] });
-  console.log("watchedFields", photo);
-
-  console.log("!!dirtyFields.photo", !!dirtyFields.photo);
 
   const onSubmit: SubmitHandler<UpdateUserInfoDTO> = (data) => {
     console.log("Form submitted:", data);
