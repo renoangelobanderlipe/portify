@@ -27,7 +27,7 @@ export const ProfileInfo = () => {
     },
   });
 
-  const photo = useWatch({ control, name: ["photo"] });
+  const photo = useWatch({ control, name: "photo" });
 
   const onSubmit: SubmitHandler<UpdateUserInfoDTO> = (data) => {
     console.log("Form submitted:", data);
