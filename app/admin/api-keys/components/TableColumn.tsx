@@ -8,8 +8,8 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { Payment } from "./ApiKeyDataTable";
 import { CreateApiKeyDialog } from "./CreateApiKeyDialog";
+import type { Payment } from "./columns";
 
 type ApiKeyTableColumnProps = {
   table: Table<Payment>;
@@ -20,7 +20,7 @@ export const ApiKeyTableColumn = ({ table }: ApiKeyTableColumnProps) => {
 
   return (
     <>
-      <div className="flex justify-end gap-4 w-full">
+      <div className="flex w-full justify-end gap-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
@@ -41,7 +41,7 @@ export const ApiKeyTableColumn = ({ table }: ApiKeyTableColumnProps) => {
                       column.toggleVisibility(!!value)
                     }
                   >
-                    {column.id}
+                    {column.id.split("_").join(" ")}
                   </DropdownMenuCheckboxItem>
                 );
               })}

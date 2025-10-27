@@ -10,6 +10,7 @@ import {
 import { Field, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 
 interface FormTextFieldProps<T extends FieldValues> {
   control: Control<T>;
@@ -19,6 +20,7 @@ interface FormTextFieldProps<T extends FieldValues> {
   disabled?: boolean;
   autoComplete?: string;
   type?: React.HTMLInputTypeAttribute;
+  className?: string;
 }
 
 /**
@@ -32,13 +34,17 @@ export function FormTextField<T extends FieldValues>({
   disabled,
   autoComplete = "on",
   type = "text",
+  className,
 }: FormTextFieldProps<T>) {
   return (
     <Controller
       control={control}
       name={name}
       render={({ field, fieldState }) => (
-        <Field data-invalid={fieldState.invalid}>
+        <Field
+          data-invalid={fieldState.invalid}
+          className={cn(className, "w-full")}
+        >
           {label && (
             <Label htmlFor={field.name} className="px-1">
               {label}

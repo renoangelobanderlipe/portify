@@ -1,6 +1,7 @@
 "use client";
 
+import { SpinningText } from "@/components/ui/spinning-text";
+
 export default function Loading() {
-  // Or a custom loading skeleton component
-  return <p>Loading...</p>;
+  return <SpinningText>learn more • earn more • grow more •</SpinningText>;
 }

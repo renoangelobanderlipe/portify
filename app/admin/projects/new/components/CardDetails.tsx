@@ -2,6 +2,7 @@
 
 import type { Control } from "react-hook-form";
 import { FormTextField } from "@/components/shared/form-text-field";
+import { FormTextArea } from "@/components/shared/form-textarea";
 import {
   Accordion,
   AccordionContent,
@@ -40,14 +41,14 @@ export const CreateCardDetails = ({ control }: CreateCardDetailsProps) => {
               control={control}
               name="title"
               label="Title"
-              placeholder="uMatter"
+              placeholder="Depression Mitigation App"
             />
 
-            <FormTextField
+            <FormTextArea
               control={control}
               name="description"
               label="Description"
-              placeholder="A mobile application to help mitigate depression"
+              placeholder="An app to help users manage and mitigate symptoms of depression through various techniques and resources."
             />
           </FieldGroup>
         </AccordionContent>

@@ -13,6 +13,11 @@ import { CreateCardProperties } from "./components/CardProperties";
 export default function Page() {
   const { control, handleSubmit } = useForm<CreateProjectDTO>({
     resolver: zodResolver(CreateProjectSchema),
+    defaultValues: {
+      thumbnail: undefined,
+      other_images: [],
+      tags: [],
+    },
   });
 
   const onSubmit: SubmitHandler<CreateProjectDTO> = (data) => {

@@ -2,7 +2,7 @@
 
 import { IconCamera } from "@tabler/icons-react";
 import Image from "next/image";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import {
   type Control,
@@ -34,6 +34,8 @@ export function FormProfileUploader<T extends FieldValues>({
     fieldState: { invalid, error },
   } = useController({ control, name });
 
+  const [isHovered, setIsHovered] = useState(false);
+
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       const file = acceptedFiles[0];
@@ -62,19 +64,21 @@ export function FormProfileUploader<T extends FieldValues>({
         </Label>
       )}
 
-      <div className="flex flex-col items-center justify-center gap-12 pb-6">
-        <div
+      <div className="flex flex-col items-center justify-center gap-6 pb-6">
+        <button
           {...getRootProps()}
+          type="button"
+          disabled={disabled}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           className={cn(
-            "border-muted-foreground/50 relative flex h-32 w-32 flex-col items-center justify-center overflow-hidden rounded-full border border-dashed transition-colors",
-            isDragActive ? "bg-muted/50" : "hover:bg-muted/30",
+            "border-muted-foreground/50 relative flex h-42 w-42 flex-col items-center justify-center overflow-hidden rounded-full border border-dashed transition-colors",
+            isDragActive ? "bg-primary" : "hover:bg-muted/30",
             disabled && "cursor-not-allowed opacity-50",
           )}
         >
-          <input {...getInputProps()} />
-
           {field.value ? (
-            <div className="relative h-32 w-32 overflow-hidden rounded-full">
+            <div className="relative h-full w-full overflow-hidden rounded-full">
               <Image
                 src={
                   field.value &&
@@ -87,22 +91,27 @@ export function FormProfileUploader<T extends FieldValues>({
                 fill
                 className="object-cover"
               />
+              {isHovered && !disabled && (
+                <div className="absolute inset-0 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-full bg-black/60 text-xs text-white transition-opacity">
+                  <IconCamera />
+                  Change Photo
+                </div>
+              )}
             </div>
           ) : (
-            <div className="text-accent-foreground flex h-full w-full cursor-pointer flex-col items-center justify-center gap-2 text-xs">
+            <div className="text-accent-foreground hover:bg-primary flex h-full w-full cursor-pointer flex-col items-center justify-center gap-2 text-xs">
               <IconCamera />
               Upload Photo
             </div>
           )}
-        </div>
-
+        </button>
+        <input {...getInputProps({ id: field.name })} />
         <div className="flex flex-col text-center">
           <p className="text-muted-foreground text-sm">Upload photo</p>
           <p className="text-muted-foreground/70 mt-1 w-52 text-xs">
             Allowed *.jpeg, *.jpg, *.png, *.gif — max size {maxSizeMB} MB
           </p>
         </div>
-
         {invalid && <FieldError errors={[error]} />}
       </div>
     </Field>

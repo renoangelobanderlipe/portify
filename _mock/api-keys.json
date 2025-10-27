@@ -1,0 +1,182 @@
+[
+  {
+    "id": "k1rm28fz",
+    "name": "Core API - Production",
+    "status": "active",
+    "api_key": "pk_live_98f3a6b4d2c1e7f0a9b8c7d6e5f4a3b2"
+  },
+  {
+    "id": "q8v0s3nw",
+    "name": "Core API - Staging",
+    "status": "inactive",
+    "api_key": "pk_test_1a2b3c4d5e6f708192a3b4c5d6e7f809"
+  },
+  {
+    "id": "t7hj9p2a",
+    "name": "Portfolio Service - Prod",
+    "status": "active",
+    "api_key": "pk_live_c0ffee1234deadbeef00aa11bb22cc33"
+  },
+  {
+    "id": "b4x9m1cd",
+    "name": "Portfolio Service - Dev",
+    "status": "inactive",
+    "api_key": "pk_test_7f6e5d4c3b2a1908f7e6d5c4b3a29180"
+  },
+  {
+    "id": "u2ne7k5r",
+    "name": "Webhook Processor",
+    "status": "active",
+    "api_key": "pk_live_a1b2c3d4e5f60718293a4b5c6d7e8f90"
+  },
+  {
+    "id": "z9qd4l8s",
+    "name": "Admin Dashboard",
+    "status": "inactive",
+    "api_key": "pk_test_0f1e2d3c4b5a69788776655443322110"
+  },
+  {
+    "id": "p6mv1t0j",
+    "name": "Mobile App Backend",
+    "status": "active",
+    "api_key": "pk_live_11223344556677889900aabbccddeeff"
+  },
+  {
+    "id": "h3yc7w5e",
+    "name": "Public Client Key",
+    "status": "active",
+    "api_key": "pk_live_deadc0de12345678abcd9876efab5432"
+  },
+  {
+    "id": "n2sk8d4q",
+    "name": "Internal Tools Key",
+    "status": "inactive",
+    "api_key": "pk_test_9f8e7d6c5b4a302110ffeeddccbbaa99"
+  },
+  {
+    "id": "c7lp0v3m",
+    "name": "Data Ingest Pipeline",
+    "status": "active",
+    "api_key": "pk_live_abcd1234ef5678901122334455667788"
+  },
+  {
+    "id": "w5rf9y2t",
+    "name": "Billing Service",
+    "status": "active",
+    "api_key": "pk_live_45ac98f012de34bc56fa78e90b12cd34"
+  },
+  {
+    "id": "d4jg1k8n",
+    "name": "Email Service",
+    "status": "inactive",
+    "api_key": "pk_test_0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d"
+  },
+  {
+    "id": "s0tm6p9b",
+    "name": "Analytics Collector",
+    "status": "active",
+    "api_key": "pk_live_f1e2d3c4b5a6978877665544332211aa"
+  },
+  {
+    "id": "f9qa3x7h",
+    "name": "Image CDN Key",
+    "status": "inactive",
+    "api_key": "pk_test_33445566778899aabbccddeeff001122"
+  },
+  {
+    "id": "y2ld8n5c",
+    "name": "Search Service",
+    "status": "active",
+    "api_key": "pk_live_5f4d3c2b1a0987e6d5c4b3a29180ffee"
+  },
+  {
+    "id": "g1zw7r4p",
+    "name": "Notifications Service",
+    "status": "inactive",
+    "api_key": "pk_test_66778899aabbccddeeff001122334455"
+  },
+  {
+    "id": "v6cm2t9s",
+    "name": "User Service",
+    "status": "active",
+    "api_key": "pk_live_22ee11dd00ccbbffaa99887766554433"
+  },
+  {
+    "id": "j8hk0q2l",
+    "name": "Auth Service",
+    "status": "inactive",
+    "api_key": "pk_test_1234567890abcdef1234567890abcdef"
+  },
+  {
+    "id": "m3pn5v7x",
+    "name": "Payments Gateway",
+    "status": "active",
+    "api_key": "pk_live_cafe1234babe5678dead0000feed1111"
+  },
+  {
+    "id": "r7ew1c6d",
+    "name": "Fraud Detector",
+    "status": "inactive",
+    "api_key": "pk_test_0badc0deffeedfacecafebeef1234567"
+  },
+  {
+    "id": "e9bt4m2k",
+    "name": "Logs Aggregator",
+    "status": "active",
+    "api_key": "pk_live_31415926535897932384626433832795"
+  },
+  {
+    "id": "l0qa7p5n",
+    "name": "QA Testing Key",
+    "status": "inactive",
+    "api_key": "pk_test_27182818284590452353602874713526"
+  },
+  {
+    "id": "x5ny3d8g",
+    "name": "Sandbox Frontend",
+    "status": "active",
+    "api_key": "pk_live_add0bede0001112233445566778899aa"
+  },
+  {
+    "id": "i2uv9h4s",
+    "name": "Partner Integration - Acme",
+    "status": "inactive",
+    "api_key": "pk_test_b16b00b5f00dfacec001d00dbaadf00d"
+  },
+  {
+    "id": "o7kb1j6q",
+    "name": "Partner Integration - Globex",
+    "status": "active",
+    "api_key": "pk_live_faceb00c1234abcd5678ef9012345678"
+  },
+  {
+    "id": "a4sd8f2z",
+    "name": "Third-Party Webhooks",
+    "status": "inactive",
+    "api_key": "pk_test_deadbeef00ddccbb9988776655443322"
+  },
+  {
+    "id": "t9we3r1y",
+    "name": "Customer Success Tool",
+    "status": "active",
+    "api_key": "pk_live_8badf00d76543210fedcba0987654321"
+  },
+  {
+    "id": "p0lc6v8m",
+    "name": "Beta Testers Key",
+    "status": "inactive",
+    "api_key": "pk_test_f00dbabeabcdef0123456789fedcba98"
+  },
+  {
+    "id": "n5gh2b7k",
+    "name": "Archivist Job",
+    "status": "active",
+    "api_key": "pk_live_0123456789abcdefabcdef0123456789"
+  },
+  {
+    "id": "q3zx8c1v",
+    "name": "Legacy Migration",
+    "status": "inactive",
+    "api_key": "pk_test_beadedc0ffee1234567890abcddcba98"
+  }
+]

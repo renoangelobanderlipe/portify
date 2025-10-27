@@ -5,27 +5,34 @@ import Image from "next/image";
 import { useCallback, useState } from "react";
 import { type Accept, useDropzone } from "react-dropzone";
 import { Button } from "@/components/ui/button";
+import { cn, keyRandomizer } from "@/lib/utils";
 
-type UploadDropzoneProps = {
+export type UploadDropzoneProps = {
   multiple?: boolean;
   acceptedTypes: Accept;
+  value?: File | File[];
   onChange?: (files: File[]) => void;
+  showAction?: boolean;
 };
 
 export const UploadDropzone = ({
   multiple = false,
   acceptedTypes,
+  value,
   onChange,
+  showAction = false,
 }: UploadDropzoneProps) => {
-  const [files, setFiles] = useState<File[]>([]);
+  const [files, setFiles] = useState<File[]>(
+    Array.isArray(value) ? value : value ? [value] : [],
+  );
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      const newFiles = [...files, ...acceptedFiles];
+      const newFiles = multiple ? [...files, ...acceptedFiles] : acceptedFiles;
       setFiles(newFiles);
       onChange?.(newFiles);
     },
-    [files, onChange],
+    [files, onChange, multiple],
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -46,20 +53,22 @@ export const UploadDropzone = ({
   };
 
   return (
-    <div className="rounded-xl text-white shadow-md">
+    <div className="rounded-xl text-white">
       {/* Dropzone */}
       <div
         {...getRootProps()}
-        className={`rounded-lg border-2 border-dashed border-gray-600 p-10 text-center transition ${
+        className={cn(
+          "cursor-pointer rounded-lg border-2 border-dashed p-10 text-center transition-colors duration-200",
+          "border-muted-foreground/50 hover:bg-muted/40 dark:hover:bg-muted/20",
           isDragActive
-            ? "border-primary bg-gray-800"
-            : "cursor-pointer hover:bg-gray-800"
-        }`}
+            ? "border-primary bg-muted dark:bg-muted/20"
+            : "bg-transparent",
+        )}
       >
         <input {...getInputProps()} />
         <div className="flex flex-col items-center justify-center">
           <Image
-            src="/upload-illustration.svg"
+            src="/cuate.svg"
             alt="Upload illustration"
             width={120}
             height={120}
@@ -67,19 +76,22 @@ export const UploadDropzone = ({
           />
           <p className="text-lg font-medium">Drop or select files</p>
           <p className="text-sm text-gray-400">
-            Drag files here, or{" "}
-            <span className="text-primary underline">browse</span> your device.
+            Drag files here, or
+            <span className="text-primary ml-1 underline">browse</span> your
+            device.
           </p>
         </div>
       </div>
 
       {/* Preview */}
       {files.length > 0 && (
-        <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(80px,1fr))] gap-3">
+        <div className="mt-6 flex flex-wrap items-start gap-3">
           {files.map((file) => (
             <div
-              key={file.name}
-              className="relative h-20 w-20 overflow-hidden rounded-lg border border-gray-700"
+              key={keyRandomizer(
+                `${file.name}-${file.size}-${file.lastModified}`,
+              )}
+              className="relative h-20 w-20 overflow-hidden rounded-lg"
             >
               <Image
                 src={URL.createObjectURL(file)}
@@ -88,8 +100,9 @@ export const UploadDropzone = ({
                 className="object-cover"
               />
               <Button
+                type="button"
                 onClick={() => removeFile(file)}
-                className="absolute top-1 right-1 rounded-full bg-black/60 p-1 hover:bg-black/80"
+                className="absolute top-1 right-1 cursor-pointer rounded-full bg-black/60 p-1 hover:bg-black/80"
               >
                 <X className="h-3 w-3 text-white" />
               </Button>
@@ -98,19 +111,12 @@ export const UploadDropzone = ({
         </div>
       )}
 
-      {files.length > 0 && (
+      {files.length > 0 && showAction && (
         <div className="mt-6 flex justify-end gap-2">
-          <Button
-            variant="outline"
-            onClick={removeAll}
-            disabled={files.length === 0}
-          >
+          <Button variant="outline" onClick={removeAll}>
             Remove All
           </Button>
-          <Button
-            onClick={() => alert("Upload logic here")}
-            disabled={files.length === 0}
-          >
+          <Button onClick={() => alert("Upload logic here")}>
             <Upload className="mr-2 h-4 w-4" /> Upload
           </Button>
         </div>
