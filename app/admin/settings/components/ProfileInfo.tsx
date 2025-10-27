@@ -1,30 +1,38 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { type SubmitHandler, useForm, useWatch } from "react-hook-form";
 import { FormProfileUploader } from "@/components/shared/form-profile-uploader";
 import { FormSwitchField } from "@/components/shared/form-switch-field";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
-  type UpdateProfileDTO,
-  UpdateProfileSchema,
-} from "@/features/settings/dtos/updateProfile";
+  type UpdateUserInfoDTO,
+  UpdateUserInfoSchema,
+} from "@/features/settings/dtos/updateUserInfo";
+import { cn } from "@/lib/utils";
+import { isNullOrEmptyArray } from "@/utils/helpers";
 
 export const ProfileInfo = () => {
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { dirtyFields },
-  } = useForm<UpdateProfileDTO>({
-    resolver: zodResolver(UpdateProfileSchema),
+  } = useForm<UpdateUserInfoDTO>({
+    resolver: zodResolver(UpdateUserInfoSchema),
     defaultValues: {
       photo: undefined,
       emailVerified: false,
     },
   });
 
-  const onSubmit = (data: UpdateProfileDTO) => {
+  const photo = useWatch({ control, name: ["photo"] });
+  console.log("watchedFields", photo);
+
+  console.log("!!dirtyFields.photo", !!dirtyFields.photo);
+
+  const onSubmit: SubmitHandler<UpdateUserInfoDTO> = (data) => {
     console.log("Form submitted:", data);
   };
   return (
@@ -40,9 +48,23 @@ export const ProfileInfo = () => {
             description="Disabling this will automatically send the user a verification email."
           />
           {(!!dirtyFields.photo || !!dirtyFields.emailVerified) && (
-            <Button type="submit" className="w-full">
-              Save changes
-            </Button>
+            <div
+              className={cn(
+                "grid gap-4",
+                !isNullOrEmptyArray(photo) ? "grid-cols-2" : "grid-cols-1",
+              )}
+            >
+              {!!dirtyFields.photo && !isNullOrEmptyArray(photo) && (
+                <Button
+                  variant="outline"
+                  type="button"
+                  onClick={() => setValue("photo", undefined)}
+                >
+                  Remove Photo
+                </Button>
+              )}
+              <Button type="submit">Save changes</Button>
+            </div>
           )}
         </form>
       </CardContent>
