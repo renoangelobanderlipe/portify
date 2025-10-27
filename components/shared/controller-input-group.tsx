@@ -13,8 +13,9 @@ type ControllerInputGroupProps<T extends Record<string, unknown>> = {
   name: FieldPath<T>;
   control: Control<T>;
   label: string;
-  prefix: string;
+  prefix?: string;
   placeholder?: string;
+  className?: string;
 };
 
 export const ControllerInputGroup = <T extends Record<string, unknown>>({
@@ -23,6 +24,7 @@ export const ControllerInputGroup = <T extends Record<string, unknown>>({
   label,
   prefix,
   placeholder,
+  className,
 }: ControllerInputGroupProps<T>) => (
   <Controller
     name={name}
@@ -34,12 +36,14 @@ export const ControllerInputGroup = <T extends Record<string, unknown>>({
           : "";
 
       return (
-        <Field data-invalid={fieldState.invalid}>
+        <Field data-invalid={fieldState.invalid} className={className}>
           <FieldLabel htmlFor={field.name}>{label}</FieldLabel>
           <InputGroup>
-            <InputGroupAddon>
-              <InputGroupText>{prefix}</InputGroupText>
-            </InputGroupAddon>
+            {prefix && (
+              <InputGroupAddon>
+                <InputGroupText>{prefix}</InputGroupText>
+              </InputGroupAddon>
+            )}
             <InputGroupInput
               id={field.name}
               {...field}

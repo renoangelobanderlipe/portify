@@ -32,7 +32,7 @@ export function FormSwitchField<T extends FieldValues>({
       render={({ field, fieldState }) => (
         <Field data-invalid={fieldState.invalid}>
           <div className="flex items-center justify-between gap-2 py-1">
-            <div className="space-y-0.5">
+            <div className="flex flex-col gap-2 space-y-0.5">
               {label && (
                 <Label htmlFor={field.name} className="px-1">
                   {label}

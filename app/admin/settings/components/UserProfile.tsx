@@ -65,47 +65,44 @@ export const UserProfile = () => {
   const isDirty = Object.keys(dirtyFields).length > 0;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex-2">
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Card>
         <CardHeader />
         <CardContent>
-          <FieldGroup>
-            <div className="flex flex-col gap-4 xl:flex-row">
-              <FormTextField
-                control={control}
-                name="firstName"
-                label="First Name"
-                placeholder="Hannah"
-              />
-              <FormTextField
-                control={control}
-                name="lastName"
-                label="Last Name"
-                placeholder="Montanna"
-              />
-            </div>
-
-            <div className="flex flex-col gap-4 xl:flex-row">
-              <FormTextField
-                control={control}
-                name="contactNumber"
-                label="Contact Number"
-                placeholder="09123456789"
-              />
-              <FormTextField
-                control={control}
-                name="headline"
-                label="Headline"
-                placeholder="Full Stack Developer"
-              />
-            </div>
-
-            <FormTextArea
+          <FieldGroup className="grid grid-cols-2">
+            <FormTextField
               control={control}
-              name="bio"
-              label="Bio"
-              placeholder="Write something about yourself..."
+              name="firstName"
+              label="First Name"
+              placeholder="Hannah"
             />
+            <FormTextField
+              control={control}
+              name="lastName"
+              label="Last Name"
+              placeholder="Montanna"
+            />
+            <FormTextField
+              control={control}
+              name="contactNumber"
+              label="Contact Number"
+              placeholder="09123456789"
+            />
+
+            <FormTextField
+              control={control}
+              name="headline"
+              label="Headline"
+              placeholder="Full Stack Developer"
+            />
+            <div className="col-span-2">
+              <FormTextArea
+                control={control}
+                name="bio"
+                label="Bio"
+                placeholder="Write something about yourself..."
+              />
+            </div>
           </FieldGroup>
         </CardContent>
 

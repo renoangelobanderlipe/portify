@@ -18,11 +18,11 @@ type ProjectCardProps = {
   tags?: string[];
   type?: string;
   url?: string;
+  thumbnail?: string;
 };
 
 export const ProjectCard = (props: ProjectCardProps) => {
-  const { title, description, tags, type, url } = props;
-  console.log("test", url === "");
+  const { title, description, tags, type, url, thumbnail } = props;
 
   const router = useRouter();
 
@@ -43,8 +43,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
       <CardHeader className="flex flex-col gap-4">
         <div className="relative h-44 w-full">
           <Image
-            //  TODO: To add the thumbnail later after the backend setup
-            src={"/sample-image.jpg"}
+            src={thumbnail || "/images/project-placeholder.png"}
             alt={title}
             width={400}
             height={180}
@@ -85,7 +84,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
           variant="default"
           onClick={handleProjectLink}
           disabled={!url}
-          className={!url ? "cursor-not-allowed opacity-50" : "cursor-pointer"}
+          className="hover:bg-secondary cursor-pointer"
         >
           Project Link
         </Button>

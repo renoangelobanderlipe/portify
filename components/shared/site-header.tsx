@@ -52,7 +52,7 @@ export function SiteHeader() {
               })}
             </BreadcrumbList>
           </Breadcrumb>
-          <AnimatedThemeToggler />
+          <AnimatedThemeToggler className="cursor-pointer" />
         </div>
       </div>
     </header>

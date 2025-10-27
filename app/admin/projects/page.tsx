@@ -31,6 +31,7 @@ export default function Page() {
               tags={project.tags}
               type={project.project_type}
               url={project.url}
+              thumbnail={project.thumbnail}
             />
           </Fragment>
         ))}

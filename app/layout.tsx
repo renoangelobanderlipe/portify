@@ -2,10 +2,10 @@ import { ThemeProvider } from "@/components/shared/theme-provider";
 import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Lexend } from "next/font/google";
 
-const montserratSans = Montserrat({
-  variable: "--font-montserrat-sans",
+const lexendSans = Lexend({
+  variable: "--font-lexend-sans",
   subsets: ["latin"],
 });
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${montserratSans.variable} antialiased`}>
+      <body className={`${lexendSans.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

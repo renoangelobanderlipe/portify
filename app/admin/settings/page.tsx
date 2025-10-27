@@ -5,9 +5,13 @@ import { UserProfile } from "./components/UserProfile";
 
 export default function Page() {
   return (
-    <div className="flex flex-col gap-6 xl:flex-row">
-      <ProfileInfo />
-      <UserProfile />
+    <div className="grid gap-6 xl:grid-cols-3">
+      <div className="col-span-1">
+        <ProfileInfo />
+      </div>
+      <div className="xl:col-span-2">
+        <UserProfile />
+      </div>
     </div>
   );
 }

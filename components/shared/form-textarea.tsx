@@ -57,6 +57,7 @@ export function FormTextArea<T extends FieldValues>({
             maxLength={maxLength}
             value={field.value ?? ""}
             onChange={(e) => field.onChange(e.target.value)}
+            className="min-h-[120px]"
           />
 
           {fieldState.invalid && <FieldError errors={[fieldState.error]} />}

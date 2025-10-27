@@ -28,15 +28,11 @@ export const ProfileInfo = () => {
     console.log("Form submitted:", data);
   };
   return (
-    <Card className="flex-1">
+    <Card>
       <CardHeader></CardHeader>
       <CardContent className="space-y-6">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <FormProfileUploader
-            control={control}
-            name="photo"
-            label="Profile Photo"
-          />
+          <FormProfileUploader control={control} name="photo" />
           <FormSwitchField
             control={control}
             name="emailVerified"

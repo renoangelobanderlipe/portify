@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  type ColumnDef,
   type ColumnFiltersState,
   flexRender,
   getCoreRowModel,
@@ -12,11 +11,8 @@ import {
   useReactTable,
   type VisibilityState,
 } from "@tanstack/react-table";
-import { ArrowUpDown, Trash2 } from "lucide-react";
-import { type MouseEvent, useState } from "react";
-import { DeleteDialog } from "@/components/shared/delete-dialog";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import { useState } from "react";
+import apiKeys from "@/_mock/api-keys.json";
 import {
   Table,
   TableBody,
@@ -25,115 +21,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useDeleteApiKey } from "@/features/apiKey/hooks/useDeleteApiKey";
+import { ApiColumns, type Payment } from "./columns";
 import { ApiKeyPagination } from "./Pagination";
 import { ApiKeyTableColumn } from "./TableColumn";
-
-const data: Payment[] = [
-  {
-    id: "m5gr84i9",
-    name: "My Portfolio API Key",
-    status: "active",
-    api_key: "*********",
-  },
-  {
-    id: "3u1reuv4",
-    name: "My Other API Key",
-    status: "inactive",
-    api_key: "*********",
-  },
-];
-
-export type Payment = {
-  id: string;
-  name: string;
-  status: "active" | "inactive";
-  api_key: string;
-};
-
-export const columns: ColumnDef<Payment>[] = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "name",
-    header: "API Key Name",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
-  },
-  {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
-    ),
-  },
-  {
-    accessorKey: "api_key",
-    header: ({ column }) => {
-      return (
-        <div className="capitalize">
-          {column.getIsSorted() === "asc" ? <ArrowUpDown /> : null} API Key
-        </div>
-      );
-    },
-    cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("api_key")}</div>
-    ),
-  },
-  {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const [openDialog, setOpenDialog] = useState(false);
-
-      const { mutate: deleteApiKey } = useDeleteApiKey();
-
-      const handleOnDelete = (event: MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-        deleteApiKey(row.original.id, {
-          onSuccess: () => {
-            setOpenDialog(false);
-          },
-        });
-      };
-
-      return (
-        <>
-          <div className="flex gap-2 justify-end">
-            <Button variant="ghost" onClick={() => setOpenDialog(true)}>
-              <Trash2 />
-            </Button>
-          </div>
-
-          <DeleteDialog
-            isOpen={openDialog}
-            onClose={() => setOpenDialog(false)}
-            handleOnClick={(event) => handleOnDelete(event)}
-          />
-        </>
-      );
-    },
-  },
-];
 
 export const ApiKeyDataTable = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -141,8 +31,8 @@ export const ApiKeyDataTable = () => {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
   const table = useReactTable({
-    data,
-    columns,
+    data: apiKeys as Payment[],
+    columns: ApiColumns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -160,7 +50,7 @@ export const ApiKeyDataTable = () => {
   });
 
   return (
-    <div className="w-full flex flex-col gap-6">
+    <div className="flex w-full flex-col gap-6">
       <ApiKeyTableColumn table={table} />
       <div className="overflow-hidden rounded-md border">
         <Table>
@@ -202,7 +92,7 @@ export const ApiKeyDataTable = () => {
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={columns.length}
+                  colSpan={ApiColumns.length}
                   className="h-24 text-center"
                 >
                   No results.
