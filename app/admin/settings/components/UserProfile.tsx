@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { z } from "zod";
 import { FormTextField } from "@/components/shared/form-text-field";
 import { FormTextArea } from "@/components/shared/form-textarea";
 import { Button } from "@/components/ui/button";
@@ -13,42 +12,18 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { FieldGroup } from "@/components/ui/field";
-
-const CreateUserProfileSchema = z.object({
-  firstName: z
-    .string({ message: "First name is required" })
-    .min(2, "First name must be at least 2 characters")
-    .max(50, "First name must be less than 50 characters"),
-  lastName: z
-    .string({ message: "Last name is required" })
-    .min(2, "Last name must be at least 2 characters")
-    .max(50, "Last name must be less than 50 characters"),
-  contactNumber: z
-    .string()
-    .regex(/^\+?[0-9]{10,15}$/, "Please enter a valid contact number")
-    .optional()
-    .or(z.literal("")),
-  headline: z
-    .string()
-    .max(120, "Headline must be less than 120 characters")
-    .optional()
-    .or(z.literal("")),
-  bio: z
-    .string()
-    .max(500, "Bio must be less than 500 characters")
-    .optional()
-    .or(z.literal("")),
-});
-
-export type CreateUserProfileDTO = z.infer<typeof CreateUserProfileSchema>;
+import {
+  type UpdateUserProfileDTO,
+  UpdateUserProfileSchema,
+} from "@/features/settings/dtos/updateUserInfo";
 
 export const UserProfile = () => {
   const {
     control,
     handleSubmit,
     formState: { dirtyFields },
-  } = useForm<CreateUserProfileDTO>({
-    resolver: zodResolver(CreateUserProfileSchema),
+  } = useForm<UpdateUserProfileDTO>({
+    resolver: zodResolver(UpdateUserProfileSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -58,7 +33,7 @@ export const UserProfile = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<CreateUserProfileDTO> = (data) => {
+  const onSubmit: SubmitHandler<UpdateUserProfileDTO> = (data) => {
     console.log("data", data);
   };
 
@@ -86,7 +61,7 @@ export const UserProfile = () => {
               control={control}
               name="contactNumber"
               label="Contact Number"
-              placeholder="09123456789"
+              placeholder="+639123456789"
             />
 
             <FormTextField
