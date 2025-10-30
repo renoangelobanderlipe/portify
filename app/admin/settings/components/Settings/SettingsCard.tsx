@@ -1,7 +1,7 @@
 "use client";
 
 import { DevicesCard } from "./DevicesCard";
-import { EmailPasswordSettings } from "./EmailPassowrd";
+import { EmailPasswordSettings } from "./EmailPassword";
 
 export const SettingsCard = () => {
   return (
