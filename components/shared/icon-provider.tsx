@@ -16,6 +16,9 @@ interface BaseProps {
 
 type IconProviderProps = BaseProps & React.HTMLAttributes<HTMLElement>;
 
+/**
+ * Turbopack-safe IconProvider component for Tabler icons or fallback icons.
+ */
 export function IconProvider({
   provider,
   iconTag,
@@ -25,31 +28,26 @@ export function IconProvider({
   ...props
 }: IconProviderProps) {
   if (provider === "tabler") {
+    // Convert iconTag string to PascalCase for file name
     const iconName = iconTag
       .replace(/^tabler[-:]?/, "")
       .replace(/(^[a-z])/, (m) => m.toUpperCase());
 
-    const TablerIcon = dynamic(async () => {
-      try {
-        const icons = await import("@tabler/icons-react");
-        const iconKey = `${iconName}` as keyof typeof icons;
-
-        const Component =
-          (icons[iconKey] as React.FC<{ size?: number; className?: string }>) ??
-          (() => (
-            <span className="text-destructive">
-              <TooltipComponent content="Icon Not Found">
-                <IconFileAlert size={size} />
-              </TooltipComponent>
-            </span>
-          ));
-
-        return Component;
-      } catch (e) {
-        console.error("Tabler icon load error:", e);
-        return () => <span className="text-destructive">?</span>;
-      }
-    });
+    // Dynamic import per icon file — Turbopack compatible
+    const TablerIcon = dynamic<{ size?: number; className?: string }>(
+      async () => {
+        try {
+          const mod = await import(
+            /* webpackChunkName: "tabler-icon-[request]" */ `@tabler/icons-react/dist/esm/icons/${iconName}`
+          );
+          return mod[iconName] || (() => <IconFileAlert size={size} />);
+        } catch (e) {
+          console.error("Tabler icon load error:", e);
+          return () => <IconFileAlert size={size} />;
+        }
+      },
+      { ssr: false }, // optional: prevents SSR errors if needed
+    );
 
     return (
       <TooltipComponent content={name}>
@@ -62,12 +60,15 @@ export function IconProvider({
     );
   }
 
+  // Fallback for unknown providers
   return (
     <span
       className={cn("text-muted-foreground inline-block", className)}
       style={{ width: size, height: size }}
     >
-      <IconFileAlert size={size} />
+      <TooltipComponent content={name}>
+        <IconFileAlert size={size} />
+      </TooltipComponent>
     </span>
   );
 }
