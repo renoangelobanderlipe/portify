@@ -15,7 +15,7 @@ import { FieldGroup } from "@/components/ui/field";
 import {
   type UpdateUserProfileDTO,
   UpdateUserProfileSchema,
-} from "@/features/settings/dtos/updateUserInfo";
+} from "@/features/settings/dtos/update-userInfo";
 
 export const UserProfile = () => {
   const {

@@ -1,0 +1,100 @@
+[
+  {
+    "name": "Laravel",
+    "placeholder": "Laravel",
+    "iconTag": "IconBrandLaravel",
+    "provider": "tabler",
+    "size": 64
+  },
+  {
+    "name": "Django",
+    "placeholder": "Django",
+    "iconTag": "IconBrandDjango",
+    "provider": "tabler",
+    "size": 64
+  },
+  {
+    "name": "Flutter",
+    "placeholder": "Flutter",
+    "iconTag": "IconBrandFlutter",
+    "provider": "tabler",
+    "size": 64
+  },
+  {
+    "name": "Kotlin",
+    "placeholder": "Kotlin",
+    "iconTag": "IconBrandKotlin",
+    "provider": "tabler",
+    "size": 64
+  },
+  {
+    "name": "Redis",
+    "placeholder": "Redis",
+    "iconTag": "IconBrandRedis",
+    "provider": "tabler",
+    "size": 64
+  },
+  {
+    "name": "Vue.js",
+    "placeholder": "Vue.js",
+    "iconTag": "IconBrandVue",
+    "provider": "tabler",
+    "size": 64
+  },
+  {
+    "name": "Svelte",
+    "placeholder": "Svelte",
+    "iconTag": "IconBrandSvelte",
+    "provider": "tabler",
+    "size": 64
+  },
+  {
+    "name": "Next.js",
+    "placeholder": "Next.js",
+    "iconTag": "IconBrandNextjs",
+    "provider": "tabler",
+    "size": 64
+  },
+  {
+    "name": "Nuxt.js",
+    "placeholder": "Nuxt.js",
+    "iconTag": "IconBrandNuxt",
+    "provider": "tabler",
+    "size": 64
+  },
+  {
+    "name": "Tailwind CSS",
+    "placeholder": "Tailwind CSS",
+    "iconTag": "IconBrandTailwind",
+    "provider": "tabler",
+    "size": 64
+  },
+  {
+    "name": "Docker",
+    "placeholder": "Docker",
+    "iconTag": "IconBrandDocker",
+    "provider": "tabler",
+    "size": 64
+  },
+  {
+    "name": "Kubernetes",
+    "placeholder": "Kubernetes",
+    "iconTag": "IconBrandKubernetes",
+    "provider": "tabler",
+    "size": 64
+  },
+  {
+    "name": "GraphQL",
+    "placeholder": "GraphQL",
+    "iconTag": "IconBrandGraphql",
+    "provider": "tabler",
+    "size": 64
+  },
+  {
+    "name": "MongoDB",
+    "placeholder": "MongoDB",
+    "iconTag": "IconBrandMongodb",
+    "provider": "tabler",
+    "size": 64
+  }
+]

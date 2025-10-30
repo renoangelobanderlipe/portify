@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   type UpdateUserInfoDTO,
   UpdateUserInfoSchema,
-} from "@/features/settings/dtos/updateUserInfo";
+} from "@/features/settings/dtos/update-userInfo";
 import { cn } from "@/lib/utils";
 
 export const ProfileInfo = () => {
