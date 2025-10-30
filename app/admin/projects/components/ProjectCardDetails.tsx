@@ -12,12 +12,15 @@ import {
 import { FieldGroup } from "@/components/ui/field";
 import { Separator } from "@/components/ui/separator";
 import type { CreateProjectDTO } from "@/features/projects/dtos/createProjectDTO";
+import type { UpdateProjectDTO } from "@/features/projects/dtos/updateProjectDTO";
 
-type CreateCardDetailsProps = {
-  control: Control<CreateProjectDTO>;
+type ProjectFormDTO = CreateProjectDTO | UpdateProjectDTO;
+
+export type ProjectCardDetailsProps = {
+  control: Control<ProjectFormDTO>;
 };
 
-export const CreateCardDetails = ({ control }: CreateCardDetailsProps) => {
+export const ProjectCardDetails = ({ control }: ProjectCardDetailsProps) => {
   return (
     <Accordion
       type="single"
