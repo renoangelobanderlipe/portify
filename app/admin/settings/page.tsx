@@ -1,7 +1,6 @@
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { keyRandomizer } from "@/lib/utils";
 import { SettingsCard } from "./components/Settings/SettingsCard";
 import TechStackCard from "./components/TechStack/TechStackCard";
 import { ProfileCard } from "./components/UserProfile/ProfileCard";
@@ -33,7 +32,7 @@ export default function Page() {
         <TabsTrigger value="settings">Settings</TabsTrigger>
       </TabsList>
       {tabs.map((tab) => (
-        <div key={keyRandomizer(tab.value)} className="py-6">
+        <div key={tab.value} className="py-6">
           <TabsContent value={tab.value}>{tab.content}</TabsContent>
         </div>
       ))}
