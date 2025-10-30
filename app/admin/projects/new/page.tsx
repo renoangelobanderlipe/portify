@@ -6,9 +6,9 @@ import {
   type CreateProjectDTO,
   CreateProjectSchema,
 } from "@/features/projects/dtos/createProjectDTO";
-import { CreateCardActions } from "./components/CardActions";
-import { CreateCardDetails } from "./components/CardDetails";
-import { CreateCardProperties } from "./components/CardProperties";
+import { ProjectCardProperties } from "../components/CardProperties";
+import { ProjectCardActions } from "../components/ProjectCardActions";
+import { ProjectCardDetails } from "../components/ProjectCardDetails";
 
 export default function Page() {
   const { control, handleSubmit } = useForm<CreateProjectDTO>({
@@ -30,10 +30,10 @@ export default function Page() {
       className="flex w-full flex-col items-center justify-center gap-6"
     >
       <div className="flex w-full flex-col items-center justify-center gap-6">
-        <CreateCardDetails control={control} />
-        <CreateCardProperties control={control} />
+        <ProjectCardDetails control={control} />
+        <ProjectCardProperties control={control} />
       </div>
-      <CreateCardActions control={control} />
+      <ProjectCardActions control={control} />
     </form>
   );
 }

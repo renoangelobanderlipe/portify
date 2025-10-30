@@ -5,12 +5,15 @@ import { Field, FieldGroup } from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import type { CreateProjectDTO } from "@/features/projects/dtos/createProjectDTO";
+import type { UpdateProjectDTO } from "@/features/projects/dtos/updateProjectDTO";
 
-type CreateCardActionProps = {
-  control: Control<CreateProjectDTO>;
+type ProjectFormDTO = CreateProjectDTO | UpdateProjectDTO;
+
+type ProjectCardActionProps = {
+  control: Control<ProjectFormDTO>;
 };
 
-export const CreateCardActions = ({ control }: CreateCardActionProps) => {
+export const ProjectCardActions = ({ control }: ProjectCardActionProps) => {
   return (
     <div className="flex w-full max-w-4xl items-center justify-between">
       <FieldGroup>

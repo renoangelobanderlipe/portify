@@ -26,6 +26,7 @@ export default function Page() {
         {projects.map((project) => (
           <Fragment key={project.id}>
             <ProjectCard
+              id={project.id}
               title={project.title}
               description={project.description}
               tags={project.tags}

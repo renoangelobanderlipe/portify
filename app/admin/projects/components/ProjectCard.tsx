@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/card";
 
 type ProjectCardProps = {
+  id: number;
   title: string;
   description?: string;
   tags?: string[];
@@ -22,7 +23,7 @@ type ProjectCardProps = {
 };
 
 export const ProjectCard = (props: ProjectCardProps) => {
-  const { title, description, tags, type, url, thumbnail } = props;
+  const { id, title, description, tags, type, url, thumbnail } = props;
 
   const router = useRouter();
 
@@ -76,7 +77,11 @@ export const ProjectCard = (props: ProjectCardProps) => {
       </CardHeader>
 
       <CardFooter className="grid gap-4 sm:grid-cols-2">
-        <Button variant="outline" className="border-primary text-primary">
+        <Button
+          variant="outline"
+          className="border-primary text-primary"
+          onClick={() => router.push(`/admin/projects/edit/${id}`)}
+        >
           Edit Project
         </Button>
 

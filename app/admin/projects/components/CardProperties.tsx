@@ -15,19 +15,22 @@ import {
 import { FieldGroup } from "@/components/ui/field";
 import { Separator } from "@/components/ui/separator";
 import type { CreateProjectDTO } from "@/features/projects/dtos/createProjectDTO";
+import type { UpdateProjectDTO } from "@/features/projects/dtos/updateProjectDTO";
 import { JPEG, PNG, SVG } from "@/lib/react-dropzone/file-types";
 
 const acceptedImageTypes = {
   "image/*": [...JPEG, ...PNG, ...SVG],
 };
 
-type CreateCardPropertiesProps = {
-  control: Control<CreateProjectDTO>;
+type ProjectFormDTO = CreateProjectDTO | UpdateProjectDTO;
+
+type ProjectCardPropertiesProps = {
+  control: Control<ProjectFormDTO>;
 };
 
-export const CreateCardProperties = ({
+export const ProjectCardProperties = ({
   control,
-}: CreateCardPropertiesProps) => {
+}: ProjectCardPropertiesProps) => {
   return (
     <Accordion
       type="single"
