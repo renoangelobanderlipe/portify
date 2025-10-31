@@ -1,17 +1,44 @@
 "use client";
 
-import { ProfileInfo } from "./components/ProfileInfo";
-import { UserProfile } from "./components/UserProfile";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SettingsCard } from "./components/Settings/SettingsCard";
+import TechStackCard from "./components/TechStack/TechStackCard";
+import { ProfileCard } from "./components/UserProfile/ProfileCard";
 
 export default function Page() {
+  const tabs = [
+    {
+      value: "account",
+      label: "Account",
+      content: <ProfileCard />,
+    },
+    {
+      value: "tech-stack",
+      label: "Tech Stack",
+      content: <TechStackCard />,
+    },
+    {
+      value: "settings",
+      label: "Settings",
+      content: <SettingsCard />,
+    },
+  ];
+
   return (
-    <div className="grid gap-6 xl:grid-cols-3">
-      <div className="col-span-1">
-        <ProfileInfo />
-      </div>
-      <div className="xl:col-span-2">
-        <UserProfile />
-      </div>
-    </div>
+    <Tabs defaultValue="account">
+      <TabsList className="bg-transparent">
+        {tabs.map((tab) => (
+          <TabsTrigger key={tab.value} value={tab.value}>
+            {tab.label}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+
+      {tabs.map((tab) => (
+        <TabsContent key={tab.value} value={tab.value}>
+          {tab.content}
+        </TabsContent>
+      ))}
+    </Tabs>
   );
 }
