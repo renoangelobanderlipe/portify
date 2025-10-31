@@ -11,12 +11,16 @@ import {
 } from "../ui/alert-dialog";
 
 type DeleteDialogProps = {
+  title: string;
+  description: string;
   isOpen: boolean;
   onClose: () => void;
   handleOnClick: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
 export const DeleteDialog = ({
+  title,
+  description,
   isOpen,
   onClose,
   handleOnClick,
@@ -25,11 +29,8 @@ export const DeleteDialog = ({
     <AlertDialog open={isOpen} onOpenChange={onClose}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </AlertDialogDescription>
+          <AlertDialogTitle>{title}</AlertDialogTitle>
+          <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
