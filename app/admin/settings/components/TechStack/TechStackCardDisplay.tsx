@@ -25,12 +25,10 @@ export const TechStackCardDisplay = ({
               key={`${icon.name}-${keyRandomizer(icon.name)}`}
               className="group relative"
             >
-              <DynamicIcon
-                name={icon.iconTag}
-                // provider={icon.provider}
-                size={icon.size}
-                // name={icon.name}
-              />
+              <div className="flex flex-col items-center">
+                <DynamicIcon name={icon.iconTag} size={icon.size} />
+                <div>{icon.name}</div>
+              </div>
 
               <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
                 <Button
