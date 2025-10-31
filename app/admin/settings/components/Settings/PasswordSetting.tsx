@@ -6,12 +6,12 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { FormTextField } from "@/components/shared/form-text-field";
 import { Button } from "@/components/ui/button";
 import {
-  type UpdateEmailDTO,
-  UpdateEmailSchema,
-} from "@/features/settings/dtos/update-email";
+  type UpdatePasswordDTO,
+  UpdatePasswordSchema,
+} from "@/features/settings/dtos/update-password";
 import { cn } from "@/lib/utils";
 
-export const EmailSettings = () => {
+export const PasswordSettings = () => {
   const [isUpdating, setIsUpdating] = useState(false);
 
   const {
@@ -19,9 +19,9 @@ export const EmailSettings = () => {
     handleSubmit,
     reset,
     formState: { dirtyFields },
-  } = useForm<UpdateEmailDTO>({
-    resolver: zodResolver(UpdateEmailSchema),
-    defaultValues: { email: "admin@admin.com" },
+  } = useForm<UpdatePasswordDTO>({
+    resolver: zodResolver(UpdatePasswordSchema),
+    defaultValues: { currentPassword: "*********" },
   });
 
   const resetForm = () => {
@@ -29,8 +29,8 @@ export const EmailSettings = () => {
     setIsUpdating(false);
   };
 
-  const onSubmit: SubmitHandler<UpdateEmailDTO> = (data) => {
-    console.log("Submitting email update:", data);
+  const onSubmit: SubmitHandler<UpdatePasswordDTO> = (data) => {
+    console.log("Submitting password update:", data);
   };
 
   return (
@@ -39,12 +39,13 @@ export const EmailSettings = () => {
         className={cn("grid gap-4", isUpdating ? "col-span-3" : "col-span-2")}
         onSubmit={handleSubmit(onSubmit)}
       >
-        {/* Current Email */}
+        {/* Current Password */}
         <FormTextField
           control={control}
-          name="email"
-          label="Email Address"
-          placeholder="Enter your email address"
+          name="currentPassword"
+          label="Current Password"
+          placeholder="Enter your current password"
+          type="password"
           disabled
         />
 
@@ -54,15 +55,17 @@ export const EmailSettings = () => {
             <div className="flex gap-4">
               <FormTextField
                 control={control}
-                name="newEmail"
-                label="New Email Address"
-                placeholder="Enter your new email address"
+                name="newPassword"
+                label="New Password"
+                placeholder="Enter your new password"
+                type="password"
               />
               <FormTextField
                 control={control}
-                name="confirmEmail"
-                label="Confirm Email Address"
-                placeholder="Confirm your email address"
+                name="confirmPassword"
+                label="Confirm Password"
+                placeholder="Confirm your new password"
+                type="password"
               />
             </div>
 
@@ -72,7 +75,9 @@ export const EmailSettings = () => {
               </Button>
               <Button
                 type="submit"
-                disabled={!dirtyFields.newEmail || !dirtyFields.confirmEmail}
+                disabled={
+                  !dirtyFields.newPassword || !dirtyFields.confirmPassword
+                }
               >
                 Save Changes
               </Button>
@@ -81,11 +86,11 @@ export const EmailSettings = () => {
         )}
       </form>
 
-      {/* Update Email Button */}
+      {/* Update Password Button */}
       {!isUpdating && (
         <div className="col-span-1 flex justify-end pt-6">
           <Button variant="ghost" onClick={() => setIsUpdating(true)}>
-            Update Email
+            Update Password
           </Button>
         </div>
       )}

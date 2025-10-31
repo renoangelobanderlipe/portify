@@ -25,14 +25,14 @@ const tabs = [
 
 export default function Page() {
   return (
-    <Tabs defaultValue="settings">
+    <Tabs defaultValue="account">
       <TabsList className="bg-transparent">
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="tech-stack">Tech Stack</TabsTrigger>
         <TabsTrigger value="settings">Settings</TabsTrigger>
       </TabsList>
       {tabs.map((tab) => (
-        <div key={tab.value} className="py-6">
+        <div key={tab.value}>
           <TabsContent value={tab.value}>{tab.content}</TabsContent>
         </div>
       ))}

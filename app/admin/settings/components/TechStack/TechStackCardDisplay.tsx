@@ -1,13 +1,14 @@
 "use client";
 
-import { Trash2 } from "lucide-react"; // example icon for delete
+import { Trash2 } from "lucide-react";
 import type iconsMock from "@/_mock/iconsMock.json";
 import { IconProvider } from "@/components/shared/icon-provider";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { keyRandomizer } from "@/lib/utils";
 
 interface TechStackCardDisplayProps {
-  icons: typeof iconsMock; // array of icons
+  icons: typeof iconsMock;
   onDelete?: (iconName: string) => void;
 }
 
@@ -22,7 +23,10 @@ export const TechStackCardDisplay = ({
       <Card>
         <CardContent className="flex flex-wrap items-start gap-4">
           {icons.map((icon) => (
-            <div key={icon.name} className="group relative">
+            <div
+              key={`${icon.name}-${keyRandomizer(icon.name)}`}
+              className="group relative"
+            >
               <IconProvider
                 iconTag={icon.iconTag}
                 provider={icon.provider}
@@ -30,7 +34,6 @@ export const TechStackCardDisplay = ({
                 name={icon.name}
               />
 
-              {/* Overlay */}
               <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
                 <Button
                   size="sm"

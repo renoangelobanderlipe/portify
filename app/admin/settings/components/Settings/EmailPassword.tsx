@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { EmailSettings } from "./EmailSettings";
+import { PasswordSettings } from "./PasswordSetting";
 
 export const EmailPasswordSettings = () => {
   return (
@@ -7,6 +8,7 @@ export const EmailPasswordSettings = () => {
       <Card>
         <CardContent className="flex flex-col gap-4">
           <EmailSettings />
+          <PasswordSettings />
         </CardContent>
       </Card>
     </div>

@@ -17,9 +17,20 @@ export const TechStackForm = ({
 }: {
   onSubmitIcon: (newIcon: (typeof iconsMock)[0]) => void;
 }) => {
-  const { control, handleSubmit } = useForm<CreateTechStackDTO>({
+  const {
+    control,
+    handleSubmit,
+    formState: { dirtyFields },
+  } = useForm<CreateTechStackDTO>({
     resolver: zodResolver(CreateTechStackSchema),
   });
+
+  const dirtFields =
+    !dirtyFields.name ||
+    !dirtyFields.placeholder ||
+    !dirtyFields.iconTag ||
+    !dirtyFields.size ||
+    !dirtyFields.provider;
 
   const onSubmit: SubmitHandler<CreateTechStackDTO> = (data) => {
     const newIcon = {
@@ -68,11 +79,13 @@ export const TechStackForm = ({
             name="provider"
             label="Provider"
             placeholder="Select your provider"
-            options={[{ label: "Tabler Icons", value: "tabler-icons" }]}
+            options={[{ label: "Tabler Icons", value: "tabler" }]}
           />
         </CardContent>
-        <CardFooter>
-          <Button type="submit">Create</Button>
+        <CardFooter className="flex justify-end">
+          <Button type="submit" disabled={dirtFields}>
+            Create
+          </Button>
         </CardFooter>
       </Card>
     </form>
