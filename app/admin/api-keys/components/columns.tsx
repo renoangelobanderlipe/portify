@@ -88,6 +88,8 @@ export const ApiColumns: ColumnDef<Payment>[] = [
           </div>
 
           <DeleteDialog
+            title="Are you absolutely sure?"
+            description="This action cannot be undone. This will permanently delete the API key."
             isOpen={openDialog}
             onClose={() => setOpenDialog(false)}
             handleOnClick={(event) => handleOnDelete(event)}
