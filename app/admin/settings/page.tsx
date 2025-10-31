@@ -5,36 +5,39 @@ import { SettingsCard } from "./components/Settings/SettingsCard";
 import TechStackCard from "./components/TechStack/TechStackCard";
 import { ProfileCard } from "./components/UserProfile/ProfileCard";
 
-const tabs = [
-  {
-    value: "account",
-    label: "Account",
-    content: <ProfileCard />,
-  },
-  {
-    value: "tech-stack",
-    label: "Tech Stack",
-    content: <TechStackCard />,
-  },
-  {
-    value: "settings",
-    label: "Settings",
-    content: <SettingsCard />,
-  },
-];
-
 export default function Page() {
+  const tabs = [
+    {
+      value: "account",
+      label: "Account",
+      content: <ProfileCard />,
+    },
+    {
+      value: "tech-stack",
+      label: "Tech Stack",
+      content: <TechStackCard />,
+    },
+    {
+      value: "settings",
+      label: "Settings",
+      content: <SettingsCard />,
+    },
+  ];
+
   return (
     <Tabs defaultValue="account">
       <TabsList className="bg-transparent">
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="tech-stack">Tech Stack</TabsTrigger>
-        <TabsTrigger value="settings">Settings</TabsTrigger>
+        {tabs.map((tab) => (
+          <TabsTrigger key={tab.value} value={tab.value}>
+            {tab.label}
+          </TabsTrigger>
+        ))}
       </TabsList>
+
       {tabs.map((tab) => (
-        <div key={tab.value}>
-          <TabsContent value={tab.value}>{tab.content}</TabsContent>
-        </div>
+        <TabsContent key={tab.value} value={tab.value}>
+          {tab.content}
+        </TabsContent>
       ))}
     </Tabs>
   );

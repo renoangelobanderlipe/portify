@@ -1,8 +1,6 @@
-"use client";
-
 import { Trash2 } from "lucide-react";
 import type iconsMock from "@/_mock/iconsMock.json";
-import { IconProvider } from "@/components/shared/icon-provider";
+import DynamicIcon from "@/components/shared/dynamic-icon";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { keyRandomizer } from "@/lib/utils";
@@ -27,11 +25,11 @@ export const TechStackCardDisplay = ({
               key={`${icon.name}-${keyRandomizer(icon.name)}`}
               className="group relative"
             >
-              <IconProvider
-                iconTag={icon.iconTag}
-                provider={icon.provider}
+              <DynamicIcon
+                name={icon.iconTag}
+                // provider={icon.provider}
                 size={icon.size}
-                name={icon.name}
+                // name={icon.name}
               />
 
               <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">

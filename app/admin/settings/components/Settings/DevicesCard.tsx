@@ -2,7 +2,6 @@
 
 import { IconDeviceDesktopX, IconLogout } from "@tabler/icons-react";
 import sessionsMock from "@/_mock/sessionsMock.json";
-import { IconProvider } from "@/components/shared/icon-provider";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { parseUserAgent } from "@/lib/userAgents";
 
@@ -31,7 +30,7 @@ export const DevicesCard = () => {
                   className="flex items-center justify-between gap-6"
                 >
                   <div className="flex items-center justify-center gap-4">
-                    <IconProvider iconTag={icon} size={42} hasTooltip={false} />
+                    {icon}
                     <div className="flex flex-col gap-1">
                       <div className="text-md font-medium">{session.name}</div>
                       <div className="text-sm">{session.ip_address}</div>
