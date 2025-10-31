@@ -5,3 +5,5 @@ export const toPascalCase = (str: string): string => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join("");
 };
+
+export const maskText = (text: string) => "*".repeat(text.length);

@@ -5,6 +5,7 @@ import { DeleteDialog } from "@/components/shared/delete-dialog";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useDeleteApiKey } from "@/features/apiKey/hooks/useDeleteApiKey";
+import { maskText } from "@/utils/stringHelper";
 
 export type Payment = {
   id: string;
@@ -58,7 +59,7 @@ export const ApiColumns: ColumnDef<Payment>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("api_key")}</div>
+      <div className="lowercase">{maskText(row.getValue("api_key"))}</div>
     ),
   },
   {
