@@ -19,14 +19,16 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { useHooks } from "../useHooks";
+import { Spinner } from "@/components/ui/spinner";
+import { useHooks } from "./useHooks";
 
-export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
+export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
   const {
     handleSubmit,
     onSubmit,
     control,
     formState: { errors },
+    isPending,
   } = useHooks();
 
   return (
@@ -48,7 +50,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
           <FieldGroup>
             <FieldGroup className="md:flex-row">
               <Controller
-                name="firstName"
+                name="first_name"
                 control={control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
@@ -66,7 +68,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 )}
               />
               <Controller
-                name="lastName"
+                name="last_name"
                 control={control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
@@ -124,7 +126,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 )}
               />
               <Controller
-                name="confirmPassword"
+                name="confirm_password"
                 control={control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
@@ -148,7 +150,9 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
             </FieldGroup>
             <FieldGroup className="mt-4">
               <Field>
-                <Button type="submit">Create Account</Button>
+                <Button type="submit" disabled={isPending}>
+                  {isPending ? <Spinner /> : "Create Account"}
+                </Button>
                 <FieldDescription className="px-6 text-center">
                   Already have an account? <Link href="/login">Sign in</Link>
                 </FieldDescription>

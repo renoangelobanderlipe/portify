@@ -4,25 +4,26 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import {
-  type signUpFormFields,
-  signUpSchema,
+  type RegisterFormDTO,
+  RegisterFormSchema,
 } from "@/features/auth/dtos/signupDTO";
-import { useSignup } from "@/features/auth/hooks/useSignup";
+import { useRegister } from "@/features/auth/hooks/use-register";
+import { PROJECT_URL } from "@/utils/constants/urls";
 
 export const useHooks = () => {
   const router = useRouter();
 
-  const methods = useForm<signUpFormFields>({
-    resolver: zodResolver(signUpSchema),
+  const methods = useForm<RegisterFormDTO>({
+    resolver: zodResolver(RegisterFormSchema),
   });
 
-  const { mutate: signUp } = useSignup();
+  const { mutate: register, isPending } = useRegister();
 
-  const onSubmit: SubmitHandler<signUpFormFields> = (data) => {
-    signUp(data, {
+  const onSubmit: SubmitHandler<RegisterFormDTO> = (data) => {
+    register(data, {
       onSuccess: () => {
         methods.reset();
-        router.replace("/admin/dashboard");
+        router.replace(PROJECT_URL.LOGIN);
       },
       onError: (error) => {
         methods.setError("root", {
@@ -35,5 +36,6 @@ export const useHooks = () => {
   return {
     ...methods,
     onSubmit,
+    isPending,
   };
 };

@@ -3,17 +3,17 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { type LoginDTO, loginSchema } from "@/features/auth/dtos/loginDTO";
+import { type LoginDTO, LoginFormSchema } from "@/features/auth/dtos/loginDTO";
 import { useLogin } from "@/features/auth/hooks/useLogin";
 
 export const useHooks = () => {
   const router = useRouter();
 
   const methods = useForm({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(LoginFormSchema),
   });
 
-  const { mutate: login } = useLogin();
+  const { mutate: login, isPending } = useLogin();
 
   const onSubmit: SubmitHandler<LoginDTO> = (data) => {
     login(data, {
@@ -29,5 +29,5 @@ export const useHooks = () => {
     });
   };
 
-  return { ...methods, onSubmit };
+  return { ...methods, onSubmit, isPending };
 };

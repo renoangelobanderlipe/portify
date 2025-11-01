@@ -1,7 +1,6 @@
 import api from "@/lib/axios";
+import { ENDPOINT } from "@/utils/constants/endpoints";
 
 export const logout = async () => {
-  const url = "/logout";
-
-  return await api.post(url);
+  return await api.post(ENDPOINT.AUTH.LOGOUT);
 };

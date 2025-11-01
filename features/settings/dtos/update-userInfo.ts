@@ -2,32 +2,46 @@ import z from "zod";
 
 export const UpdateUserInfoSchema = z.object({
   photo: z
-    .instanceof(File)
+    .union([z.instanceof(File), z.string()])
     .optional()
-    .refine(
-      (file) => !file || file.size <= 3 * 1024 * 1024,
-      "Max file size is 3MB",
-    )
-    .refine(
-      (file) =>
-        !file || ["image/jpeg", "image/png", "image/gif"].includes(file.type),
-      "Only .jpeg, .jpg, .png, .gif formats are supported",
-    ),
-  emailVerified: z.boolean(),
+    .refine((fileOrString) => {
+      // Only validate size if it's a File
+      if (fileOrString instanceof File) {
+        return fileOrString.size <= 3 * 1024 * 1024;
+      }
+      return true;
+    }, "Max file size is 3MB")
+    .refine((fileOrString) => {
+      // Only validate type if it's a File
+      if (fileOrString instanceof File) {
+        return ["image/jpeg", "image/png", "image/gif"].includes(
+          fileOrString.type,
+        );
+      }
+      return true;
+    }, "Only .jpeg, .jpg, .png, .gif formats are supported"),
 });
 
 export type UpdateUserInfoDTO = z.infer<typeof UpdateUserInfoSchema>;
 
 export const UpdateUserProfileSchema = z.object({
-  firstName: z
+  first_name: z
     .string({ message: "First name is required" })
     .min(2, "First name must be at least 2 characters")
     .max(50, "First name must be less than 50 characters"),
-  lastName: z
+  middle_name: z
+    .string({ message: "Middle name is required" })
+    .max(50, "Middle name must be less than 50 characters")
+    .optional(),
+  last_name: z
     .string({ message: "Last name is required" })
     .min(2, "Last name must be at least 2 characters")
     .max(50, "Last name must be less than 50 characters"),
-  contactNumber: z
+  suffix: z
+    .string()
+    .max(10, "Suffix must be less than 10 characters")
+    .optional(),
+  contact_number: z
     .string()
     .trim()
     .refine(

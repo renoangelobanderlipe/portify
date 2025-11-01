@@ -46,15 +46,19 @@ export function FormProfileUploader<T extends FieldValues>({
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: {
-      "image/jpeg": [],
-      "image/png": [],
-      "image/gif": [],
-    },
+    accept: { "image/jpeg": [], "image/png": [], "image/gif": [] },
     maxFiles: 1,
     maxSize: maxSizeMB * 1024 * 1024,
     disabled,
   });
+
+  // Determine preview src: either URL string or object URL from File
+  const previewSrc =
+    field.value && typeof field.value === "object" && "name" in field.value
+      ? URL.createObjectURL(field.value as File)
+      : typeof field.value === "string"
+        ? field.value
+        : undefined;
 
   return (
     <Field data-invalid={invalid}>
@@ -77,19 +81,14 @@ export function FormProfileUploader<T extends FieldValues>({
             disabled && "cursor-not-allowed opacity-50",
           )}
         >
-          {field.value ? (
+          {previewSrc ? (
             <div className="relative h-full w-full overflow-hidden rounded-full">
               <Image
-                src={
-                  field.value &&
-                  typeof field.value === "object" &&
-                  "name" in field.value
-                    ? URL.createObjectURL(field.value as File)
-                    : String(field.value)
-                }
+                src={previewSrc}
                 alt="Profile Preview"
                 fill
                 className="object-cover"
+                unoptimized
               />
               {isHovered && !disabled && (
                 <div className="absolute inset-0 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-full bg-black/60 text-xs text-white transition-opacity">

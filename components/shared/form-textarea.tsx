@@ -19,6 +19,7 @@ interface FormTextAreaProps<T extends FieldValues> {
   autoComplete?: string;
   rows?: number;
   maxLength?: number;
+  loading?: boolean;
 }
 
 /**
@@ -33,6 +34,7 @@ export function FormTextArea<T extends FieldValues>({
   autoComplete = "on",
   rows = 4,
   maxLength,
+  loading = false,
 }: FormTextAreaProps<T>) {
   return (
     <Controller
@@ -58,6 +60,7 @@ export function FormTextArea<T extends FieldValues>({
             value={field.value ?? ""}
             onChange={(e) => field.onChange(e.target.value)}
             className="min-h-[120px]"
+            loading={loading}
           />
 
           {fieldState.invalid && <FieldError errors={[fieldState.error]} />}

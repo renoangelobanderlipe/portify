@@ -19,6 +19,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 import { useHooks } from "../useHooks";
 
@@ -31,6 +32,7 @@ export function LoginForm({
     formState: { isSubmitting, errors },
     control,
     onSubmit,
+    isPending,
   } = useHooks();
 
   return (
@@ -100,11 +102,11 @@ export function LoginForm({
 
               <Field>
                 <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? "Logging in..." : "Login"}
+                  {isSubmitting || isPending ? <Spinner /> : "Login"}
                 </Button>
                 <FieldDescription className="text-center">
                   Don&apos;t have an account?{" "}
-                  <Link href="/signup">Sign up</Link>
+                  <Link href="/register">Sign up</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>
