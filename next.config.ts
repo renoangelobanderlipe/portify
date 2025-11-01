@@ -4,11 +4,10 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "s3.amazonaws.com",
-        port: "",
-        pathname: "/my-bucket/**",
-        search: "",
+        protocol: "http", // Or 'https' if your API uses HTTPS
+        hostname: "api.portify.test",
+        port: "", // Leave empty if default ports (80 for http, 443 for https)
+        pathname: "**", // Or a more specific path if needed, e.g., '/user-uploads/**'
       },
     ],
   },

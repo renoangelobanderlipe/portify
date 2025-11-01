@@ -1,36 +1,32 @@
 import z from "zod";
 
-export const signUpSchema = z
+export const RegisterFormSchema = z
   .object({
-    firstName: z
+    first_name: z
       .string({
         message: "First name is required",
       })
       .min(1, "First name is required"),
-    lastName: z
+    last_name: z
       .string({
         message: "Last name is required",
       })
       .min(1, "Last name is required"),
-    email: z
-      .string({
-        message: "Email is required",
-      })
-      .email("Invalid email address"),
+    email: z.email("Invalid email address"),
     password: z
       .string({
         message: "Password is required",
       })
       .min(8, "Password must be at least 8 characters long"),
-    confirmPassword: z
+    confirm_password: z
       .string({
         message: "Confirm Password is required",
       })
       .min(8, "Confirm Password must be at least 8 characters long"),
   })
-  .refine((data) => data.password === data.confirmPassword, {
+  .refine((data) => data.password === data.confirm_password, {
     message: "Passwords don't match",
-    path: ["confirmPassword"],
+    path: ["confirm_password"],
   });
 
-export type signUpFormFields = z.infer<typeof signUpSchema>;
+export type RegisterFormDTO = z.infer<typeof RegisterFormSchema>;

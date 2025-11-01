@@ -20,6 +20,7 @@ interface FormTextFieldProps<T extends FieldValues> {
   disabled?: boolean;
   autoComplete?: string;
   type?: React.HTMLInputTypeAttribute;
+  loading?: boolean;
   className?: string;
 }
 
@@ -34,6 +35,7 @@ export function FormTextField<T extends FieldValues>({
   disabled,
   autoComplete = "on",
   type = "text",
+  loading = false,
   className,
 }: FormTextFieldProps<T>) {
   return (
@@ -60,6 +62,7 @@ export function FormTextField<T extends FieldValues>({
             autoComplete={autoComplete}
             disabled={disabled}
             value={field.value ?? ""}
+            loading={loading}
           />
 
           {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
